@@ -3,7 +3,7 @@ name: Deploy HTML docs to gh-pages
 on:
   push:
     branches:
-      - speakdecoratedtext
+      - SpeakDecoratedText
 
 jobs:
   deploy:
