@@ -35,7 +35,7 @@ addon_info = {
 	# Author(s)
 	"addon_author": "Abdullah Ashraf <abdullahashraf4846@gmail.com",
 	# URL for the add-on documentation support
-	"addon_url": "https://abdullahashraf32.github.io/SpeakDecoratedText/",
+	"addon_url": "https://cerulean-nougat-eec1f7.netlify.app/",
 	# URL for the add-on repository where the source code can be found
 	"addon_sourceURL": "https://github.com/Abdullahashraf32/SpeakDecoratedText/tree/SpeakDecoratedText",
 	# Documentation file name
