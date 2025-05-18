@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SpeakDecoratedText Addon Documentation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>SpeakDecoratedText Addon Documentation</h1>
+  <p>This addon enhances NVDA screen reader by converting decorated or complex text into simplified ASCII text for easier reading and copying. It also includes features specifically to clean Arabic text and manage conversion history.</p>
+
+  <h2>Features</h2>
+  <ul>
+    <li>Convert decorated text to plain ASCII and copy it to clipboard. It is very important because the fancy unicode texts are not readable with NVDA screen reader by default.</li>
+    <li>Clean Arabic text and copy cleaned text to clipboard.</li>
+    <li>Restore previously converted texts from history with repeated commands.</li>
+  </ul>
+
+  <h2>Keyboard Shortcuts (Gestures)</h2>
+  <ul>
+    <li><span class="shortcut">NVDA + Shift + Z</span>: In case you press this shortcut once, you will listen to the screen reader says the selected current text after converting it to ordinary ASCII letters, but in case you need to keep this converted text to the clipboard,  you can press this this shortcut twice quickly to copy last converted text.</li>
+    <li><span class="shortcut">NVDA + Shift + A</span>: Clean selected Arabic text and copy to clipboard. This improves the Arabic texts readibility by removing the special characters or converting them to the familiar Arabic unicode. It cleans the Arabic text from things like kasheda and diacritics.</li>
+    <li><span class="shortcut">NVDA + Shift + H</span>: Restore previously converted texts (press repeatedly to go back further).</li>
+  </ul>
+
+  <h2>How It Works</h2>
+  <p>The addon uses the <code>anyascii</code> Python library to transliterate decorated or non-ASCII characters into ASCII equivalents. For Arabic text, it uses a custom normalization function (<code>decoratedarabic.normalize_text</code>) to clean and simplify the text.</p>
+
+  <div class="note">
+    <strong>Note:</strong> The <code>anyascii</code> library is required for text conversion. It is installed automatically within the add-on folder.
+  </div>
+
+  <h2>Implementation Overview</h2>
+  <pre><code>class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+  - Keeps a short history of converted texts (up to 3).
+  - Uses time checks to detect repeated key presses.
+  - Copies converted or cleaned text directly to clipboard.
+  - Provides feedback messages through NVDA's UI.</code></pre>
+
+  <h2>Usage Tips</h2>
+  <ul>
+    <li>Use the convert shortcut repeatedly within 0.5 seconds to copy the last converted text again.</li>
+    <li>Use the restore shortcut multiple times to navigate backwards through recent converted texts.</li>
+    <li>Ensure text is selected or your review cursor is on the target text before using the shortcuts. This works with the texts that found within web pages and Microsoft word texts as both of them support the review mode.</li>
+  </ul>
+<h2>Used Libraries</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Library</th>
+      <th>Purpose of Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>import globalPluginHandler</code></td>
+      <td>To register the addon as a Global Plugin in NVDA's plugin system.</td>
+    </tr>
+    <tr>
+      <td><code>import ui</code></td>
+      <td>To display messages and feedback to the user via NVDA's UI.</td>
+    </tr>
+    <tr>
+      <td><code>import sys</code></td>
+      <td>To modify <code>sys.path</code> to include the plugin directory for importing local modules and external libraries like <code>anyascii</code>.</td>
+    </tr>
+    <tr>
+      <td><code>import os</code></td>
+      <td>To determine the file system path of the addon directory, useful for dynamic imports or resource location.</td>
+    </tr>
+    <tr>
+      <td><code>import time</code></td>
+      <td>To measure time intervals between key presses, enabling detection of rapid repeated shortcut usage.</td>
+    </tr>
+    <tr>
+      <td><code>import re</code></td>
+      <td>To perform pattern matching and replacement for cleaning or transforming decorated symbols in text.</td>
+    </tr>
+    <tr>
+      <td><code>import unicodedata</code></td>
+      <td>To normalize and clean text by removing diacritics and other Unicode decorations.</td>
+    </tr>
+    <tr>
+      <td><code>import api</code></td>
+      <td>To access NVDA’s API functions like <code>getReviewPosition()</code> and to copy text to the clipboard.</td>
+    </tr>
+    <tr>
+      <td><code>from scriptHandler import script</code></td>
+      <td>To define scripts that act as keyboard shortcuts (gestures) within NVDA.</td>
+    </tr>
+  </tbody>
+</table>
+  <h2>Contact & Support</h2>
+  <ul>
+      <li>If you encounter issues or want to contribute, please open an issue or pull request on the
+  <a href="https://github.com/Abdullahashraf32/SpeakDecoratedText" target="_blank" rel="noopener noreferrer">
+    <img src="myphoto.JPG" />
+    GitHub repository
+  </a>.
+  </li>
+  <li>You can email me from <a href="abdullahashraf4846@gmail.com">Here</a></li>
+  <li>You can contact me via WhatsApp from <a href="https://wa.me/+201148467527">Here</a></li>
+  <li>In case you need to contact me via Telegram, you can do it from <a href="https://t.me/abdullahashraf4846">Here</a></li>
+  <li>You can visit my Youtube channel from <a href="https://www.youtube.com/@AbdullahAshraf-zc5dx">Here</a></li>
+</ul>
+
+</body>
+</html>
